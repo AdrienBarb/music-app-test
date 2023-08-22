@@ -1,0 +1,25 @@
+.container {
+  cursor: pointer;
+  .imageContainer {
+    width: 220px;
+    aspect-ratio: 1;
+    background-size: contain;
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+  }
+
+  .name {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 800;
+    text-align: left;
+    margin-bottom: 0.4rem;
+  }
+
+  .artist {
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 200;
+    text-align: left;
+  }
+}
