@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MusicPlayer = ({ music }) => {
+const MusicPlayer = ({ music, nextTrack, prevTrack }) => {
   const audioRef = useRef(null);
 
   const [duration, setDuration] = useState(0);
@@ -25,6 +25,8 @@ const MusicPlayer = ({ music }) => {
         setCurrent(audioRef.current.currentTime);
       });
     }
+
+    setIsPlaying(true);
 
     return () => {
       if (audioRef.current) {
@@ -46,7 +48,22 @@ const MusicPlayer = ({ music }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.addEventListener("ended", nextTrack);
+    }
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener("ended", nextTrack);
+      }
+    };
+  }, [music, nextTrack]);
+
   const togglePlayback = () => {
+    if (!music) {
+      return;
+    }
+
     if (isPlaying) {
       audioRef.current.pause();
     } else {
@@ -56,6 +73,10 @@ const MusicPlayer = ({ music }) => {
   };
 
   const handleProgressBarClick = (e) => {
+    if (!music) {
+      return;
+    }
+
     const width = e.target.clientWidth;
     const offsetX = e.nativeEvent.offsetX;
     const percentage = offsetX / width;
@@ -114,7 +135,11 @@ const MusicPlayer = ({ music }) => {
         </div>
 
         <div className={styles.musicNavigation}>
-          <FontAwesomeIcon icon={faBackward} />
+          <FontAwesomeIcon
+            icon={faBackward}
+            onClick={prevTrack}
+            style={{ cursor: "pointer" }}
+          />
           <div
             className={styles.playContainer}
             style={{
@@ -125,7 +150,11 @@ const MusicPlayer = ({ music }) => {
               <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
             </div>
           </div>
-          <FontAwesomeIcon icon={faForward} />
+          <FontAwesomeIcon
+            icon={faForward}
+            onClick={nextTrack}
+            style={{ cursor: "pointer" }}
+          />
         </div>
       </div>
     </div>
