@@ -22,7 +22,7 @@ const DiscoverPage = () => {
 
     let nextIndex = selectedMusic.index + 1;
     if (nextIndex >= musicList.length) {
-      nextIndex = 0; // Recommence depuis le début
+      nextIndex = 0;
     }
     setSelectedMusic({ music: musicList[nextIndex], index: nextIndex });
   };
@@ -34,7 +34,7 @@ const DiscoverPage = () => {
 
     let prevIndex = selectedMusic.index - 1;
     if (prevIndex < 0) {
-      prevIndex = musicList.length - 1; // Va à la dernière musique
+      prevIndex = musicList.length - 1;
     }
     setSelectedMusic({ music: musicList[prevIndex], index: prevIndex });
   };

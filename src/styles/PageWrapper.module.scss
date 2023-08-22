@@ -3,6 +3,10 @@
   width: 100%;
   overflow: hidden;
 
+  @media (max-width: 768px) {
+    width: auto;
+  }
+
   .header {
     margin-bottom: 1rem;
     h1 {

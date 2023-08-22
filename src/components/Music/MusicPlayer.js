@@ -17,12 +17,12 @@ const MusicPlayer = ({ music, nextTrack, prevTrack }) => {
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.addEventListener("loadedmetadata", () => {
-        setDuration(audioRef.current.duration);
+      audioRef.current?.addEventListener("loadedmetadata", () => {
+        setDuration(audioRef.current?.duration);
       });
 
       audioRef.current.addEventListener("timeupdate", () => {
-        setCurrent(audioRef.current.currentTime);
+        setCurrent(audioRef.current?.currentTime);
       });
     }
 
@@ -30,31 +30,31 @@ const MusicPlayer = ({ music, nextTrack, prevTrack }) => {
 
     return () => {
       if (audioRef.current) {
-        audioRef.current.removeEventListener("loadedmetadata", () => {});
-        audioRef.current.removeEventListener("timeupdate", () => {});
+        audioRef.current?.removeEventListener("loadedmetadata", () => {});
+        audioRef.current?.removeEventListener("timeupdate", () => {});
       }
     };
   }, [music]);
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.addEventListener("ended", () => {
+      audioRef.current?.addEventListener("ended", () => {
         setIsPlaying(false);
       });
 
       return () => {
-        audioRef.current.removeEventListener("ended", () => {});
+        audioRef.current?.removeEventListener("ended", () => {});
       };
     }
   }, []);
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.addEventListener("ended", nextTrack);
+      audioRef.current?.addEventListener("ended", nextTrack);
     }
     return () => {
       if (audioRef.current) {
-        audioRef.current.removeEventListener("ended", nextTrack);
+        audioRef.current?.removeEventListener("ended", nextTrack);
       }
     };
   }, [music, nextTrack]);

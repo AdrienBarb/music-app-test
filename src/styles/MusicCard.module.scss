@@ -22,4 +22,10 @@
     font-weight: 200;
     text-align: left;
   }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
 }
