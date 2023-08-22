@@ -3,7 +3,6 @@ import styles from "../../styles/Layout.module.scss";
 import NavigationBar from "./NavigationBar";
 
 const Layout = ({ children }) => {
-  console.log(children);
   return (
     <div className={styles.container}>
       <NavigationBar />

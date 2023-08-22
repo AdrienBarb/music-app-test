@@ -8,7 +8,7 @@ const MusicCard = ({ music, onClick }) => {
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    console.log("favorites ", favorites);
+
     setIsFavorite(favorites.some((fav) => fav.id === music.id));
   }, [music]);
 

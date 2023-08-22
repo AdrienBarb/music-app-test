@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import DiscoverPage from "./pages/Discover";
 import FavoritePage from "./pages/Favorite";
 import Layout from "./components/Layout/Layout";
